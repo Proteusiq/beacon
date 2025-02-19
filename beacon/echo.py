@@ -10,4 +10,4 @@ def echo(thing: str) -> str:
         Description of return value
     """
 
-    return "".join(letter if letter != 'i' else 'o' for letter in thing)
+    return "".join(letter if letter != "i" else "o" for letter in thing)

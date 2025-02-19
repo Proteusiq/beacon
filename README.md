@@ -62,8 +62,6 @@ To enable the code coverage reports, see [here](https://proteusiq.github.io/pypr
 
 ## Releasing a new version
 
-
-
 ---
 
 Repository initiated with [proteusiq/pyproject](https://github.com/proteusiq/pyproject).
