@@ -6,22 +6,11 @@
 [![Build status](https://img.shields.io/github/actions/workflow/status/proteusiq/beacon/main.yml?branch=main)](https://github.com/proteusiq/beacon/actions/workflows/main.yml?query=branch%3Amain)
 Distance between a beacon and becon is direction vs taste
 
-- **Github repository**: <https://github.com/proteusiq/beacon/>
-- **Documentation** <https://proteusiq.github.io/beacon/>
+## Getting 
 
-## Getting started with your project
+### 1. Repository Walk Through
 
-### 1. Create a New Repository
-
-First, create a repository on GitHub with the same name as this project, and then run the following commands:
-
-```bash
-git init -b main
-git add .
-git commit -m "init commit"
-git remote add origin git@github.com:proteusiq/beacon.git
-git push -u origin main
-```
+Brew some coffee ...
 
 ### 2. Set Up Your Development Environment
 
@@ -53,12 +42,6 @@ git push origin main
 
 You are now ready to start development on your project!
 The CI/CD pipeline will be triggered when you open a pull request, merge to main, or when you create a new release.
-
-To finalize the set-up for publishing to PyPI, see [here](https://proteusiq.github.io/pyproject/features/publishing/#set-up-for-pypi).
-For activating the automatic documentation with MkDocs, see [here](https://proteusiq.github.io/pyproject/features/mkdocs/#enabling-the-documentation-on-github).
-To enable the code coverage reports, see [here](https://proteusiq.github.io/pyproject/features/codecov/).
-
-## Releasing a new version
 
 ---
 
