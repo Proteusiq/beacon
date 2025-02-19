@@ -1,3 +1,5 @@
+![becon](https://github.com/user-attachments/assets/87b18d8a-0ee4-4bb9-a0be-c411c7cb6aa9)
+
 # beacon
 
 [![Release](https://img.shields.io/github/v/release/proteusiq/beacon)](https://img.shields.io/github/v/release/proteusiq/beacon)
