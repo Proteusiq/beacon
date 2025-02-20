@@ -1,0 +1,37 @@
+name: Reusable Template for Deploy Azure Resources
+
+on:
+  workflow_call:
+    inputs:
+      parameters-file:
+        required: true
+        type: string
+      runner-name:
+        required: true
+        type: string
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy-resources:
+    runs-on: ${{ inputs.runner-name }}
+
+    steps:
+    - name: 'Checkout Repository'
+      uses: actions/checkout@v4
+
+    - name: 'Extract Resource Group Name'
+      id: get-rg
+      run: |
+        RG_NAME=$(jq -r '.parameters.resourceGroupName.value' ${{ inputs.parameters-file }})
+        echo "rg_name=$RG_NAME" >> $GITHUB_OUTPUT
+        echo "Resource Group Name: $RG_NAME"
+
+    - name: 'Deploy Infrastructure'
+      run: |
+        az deployment group create \
+        --resource-group ${{ steps.get-rg.outputs.rg_name }} \
+        --template-file ./bicep/main_deploy_resources.bicep \
+        --parameters ${{ inputs.parameters-file }}
