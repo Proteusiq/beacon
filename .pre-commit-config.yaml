@@ -37,3 +37,9 @@ repos:
         name: cat-readme-index
         entry: sh -c 'cat README.md > docs/index.md'
         language: system
+
+      - id: make-checks
+        name: make-checks
+        entry: make check
+        language: system
+        stages: [pre-push]
