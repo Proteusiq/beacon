@@ -1,1 +1,1 @@
-::: beacon.foo
+::: beacon.echo
