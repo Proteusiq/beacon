@@ -47,7 +47,7 @@ dependencies = [
     { name = "qdrant-client", extra = ["fastembed"] },
 ]
 
-[package.dev-dependencies]
+[package.optional-dependencies]
 dev = [
     { name = "deptry" },
     { name = "mkdocs" },
