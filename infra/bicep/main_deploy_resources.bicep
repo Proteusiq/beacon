@@ -1,7 +1,7 @@
 @description('Specifies the name of the deployment.')
 @minLength(3)
 @maxLength(16)
-param name string 
+param name string
 
 @description('Specifies the name of the environment.')
 @allowed([
@@ -9,7 +9,7 @@ param name string
   'tst'
   'prd'
 ])
-param environment string 
+param environment string
 
 @description('Specifies the location of the Azure Machine Learning workspace and dependent resources.')
 param location string = 'westeurope'
@@ -40,4 +40,3 @@ module keyvault './modules/keyvault.bicep' = {
     keyVaultName: keyVaultName
   }
 }
-

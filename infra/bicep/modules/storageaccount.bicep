@@ -65,7 +65,7 @@ resource storageAccountEndpoint 'Microsoft.KeyVault/vaults/secrets@2024-04-01-pr
 resource storageAccountKey 'Microsoft.KeyVault/vaults/secrets@2024-04-01-preview' = {
   name: 'AZURE-STORAGE-KEY'
   parent: keyVault
-  properties: { 
+  properties: {
     value: storageAccount.listKeys().keys[0].value
   }
 }

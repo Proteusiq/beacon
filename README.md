@@ -6,7 +6,7 @@
 [![Build status](https://img.shields.io/github/actions/workflow/status/proteusiq/beacon/main.yml?branch=main)](https://github.com/proteusiq/beacon/actions/workflows/main.yml?query=branch%3Amain)
 Distance between a beacon and becon is direction vs taste
 
-## Getting 
+## Getting
 
 ### 1. Repository Walk Through
 

@@ -1,5 +1,5 @@
 @description('Specifies the location of the Azure Machine Learning workspace and dependent resources.')
-param location string 
+param location string
 
 @description('Name of the Key Vault')
 param keyVaultName string
