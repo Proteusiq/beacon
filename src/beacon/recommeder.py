@@ -1,5 +1,5 @@
-from beacon.frier import becons
+from beacon.frier import bacons
 
 
 def recommend(text: str) -> list[str]:
-    return becons.fry(text)
+    return bacons.fry(text)
