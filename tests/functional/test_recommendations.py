@@ -11,14 +11,13 @@ class Request(TypedDict):
 
 
 USER_STORIES: list[Request] = [
-    {"query": "vampire love drama", "expects": "The Twillight Saga"},
+    {"query": "vampire love drama", "expects": "Twilight Saga"},
     {"query": "a lawyer driving a fancy car", "expects": "The Lincoln Lawyer"},
     {"query": "a boy going to a magic school of wizards", "expects": "Harry Potter"},
 ]
 
 
-@pytest.mark.xfail(reason="show cases tdd done right")
-@pytest.mark.parametrize("story", USER_STORIES, ids=["twilight", "lincoln", "potter"])
+@pytest.mark.parametrize("story", USER_STORIES, ids=["twillight", "lincoln", "potter"])
 def test_becons(story):
     # Arrange
     query = story.get("query")
