@@ -1,48 +1,79 @@
-![becon](https://github.com/user-attachments/assets/87b18d8a-0ee4-4bb9-a0be-c411c7cb6aa9)
+![beacon](https://github.com/user-attachments/assets/87b18d8a-0ee4-4bb9-a0be-c411c7cb6aa9)
 
-# beacon
+# beacon 📚
 
 [![Release](https://img.shields.io/github/v/release/proteusiq/beacon)](https://img.shields.io/github/v/release/proteusiq/beacon)
 [![Build status](https://img.shields.io/github/actions/workflow/status/proteusiq/beacon/main.yml?branch=main)](https://github.com/proteusiq/beacon/actions/workflows/main.yml?query=branch%3Amain)
-Distance between a beacon and becon is direction vs taste
+[![Python Version](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 
-## Getting
+beacon is a semantic book recommendation system that helps you find your next great read based on natural language descriptions.
 
-### 1. Repository Walk Through
+## features
 
-Brew some coffee ...
+- natural language book search
+- semantic similarity matching
+- fast vector database backend
+- curated book collection from goodreads
 
-### 2. Set Up Your Development Environment
+## installation
 
-Then, install the environment and the pre-commit hooks with
+```bash
+uv pip install git+https://github.com/proteusiq/beacon.git
+```
 
+## quick start
+
+```python
+from beacon import recommend
+
+# get book recommendations
+results = recommend("fantasy adventure with dragons and magic")
+
+# print matched books
+for book in results:
+    print(f"📖 {book['title']} by {book['author']}")
+```
+
+## development setup
+
+1. clone the repository
+```bash
+git clone https://github.com/proteusiq/beacon.git
+cd beacon
+```
+
+2. install dependencies and pre-commit hooks
 ```bash
 make install
 ```
 
-This will also generate your `uv.lock` file
+3. run tests
+```bash
+uv run pytest
+```
 
-### 3. Run the pre-commit hooks
-
-Initially, the CI/CD pipeline might be failing due to formatting issues. To resolve those run:
-
+4. format code and run linters
 ```bash
 uv run pre-commit run -a
 ```
 
-### 4. Commit the changes
+## examples
 
-Lastly, commit the changes made by the two steps above to your repository.
-
-```bash
-git add .
-git commit -m 'Fix formatting issues'
-git push origin main
+find books similar to your favorites:
+```python
+recommend("detective solving murders in victorian london")
+recommend("post-apocalyptic survival story")
+recommend("romance in a small coastal town")
 ```
 
-You are now ready to start development on your project!
-The CI/CD pipeline will be triggered when you open a pull request, merge to main, or when you create a new release.
+## contributing
+
+contributions are welcome! please check our [contributing guidelines](CONTRIBUTING.md).
+
+## license
+
+this project is licensed under the terms of the mit license.
 
 ---
 
-Repository initiated with [proteusiq/pyproject](https://github.com/proteusiq/pyproject).
+made with ❤️ using [proteusiq/pyproject](https://github.com/proteusiq/pyproject)
