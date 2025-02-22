@@ -5,7 +5,7 @@ import pytest
 from beacon import recommeder
 
 
-class Request(TypedDict):
+class Request(TypedDict, total=True):
     query: str
     expects: str
 
