@@ -13,7 +13,7 @@ repos:
     rev: "v0.6.3"
     hooks:
       - id: ruff
-        exclude: notebooks/*.py
+        exclude: notebooks/eda.py
         args: [--exit-non-zero-on-fix]
       - id: ruff-format
 
