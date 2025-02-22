@@ -4,7 +4,18 @@ from beacon.settings import BOOKS_CSV_PATH, LANGUAGE, MIN_REVIEWS
 
 
 def get_data() -> pl.DataFrame:
-    """Load and preprocess books data from CSV."""
+    """load and preprocess books data from csv file.
+    
+    reads the books dataset and applies filtering and transformations:
+    - filters for english books with minimum review threshold
+    - combines series title with book title when applicable
+    - selects relevant columns for recommendation system
+    
+    returns:
+        polars dataframe with processed book data containing:
+        - isbn, combined_title, authors, ratings, reviews
+        - genres, description and other metadata
+    """
     schema_overrides = {"isbn": pl.Utf8}
 
     books = (
