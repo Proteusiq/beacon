@@ -1,34 +1,29 @@
-from qdrant_client import QdrantClient
-from qdrant_client.http.models import QueryResponse
-
+from beacon.pan.db_client import BookDatabase
 from beacon.pan.oil import get_data
-
-client = QdrantClient(path="data/books")
+from beacon.settings import DEFAULT_LIMIT
 
 
 def load_data() -> None:
-    bacons = get_data()
+    """Load books data into the database."""
+    db = BookDatabase()
+    books_df = get_data()
+    
     metadata = [
         {
             "author": author,
             "title": title,
         }
         for author, title in zip(
-            bacons.select("authors").get_column("authors").to_list(),
-            bacons.select("combined_title").get_column("combined_title").to_list(),
+            books_df.select("authors").get_column("authors").to_list(),
+            books_df.select("combined_title").get_column("combined_title").to_list(),
         )
     ]
-    documents = bacons.select("description").get_column("description").to_list()
-    client.add(
-        collection_name="books",
-        documents=documents,
-        metadata=metadata,
-    )
+    documents = books_df.select("description").get_column("description").to_list()
+    db.add_books(documents=documents, metadata=metadata)
 
 
-def get_recommendation(text: str, limit: int = 5) -> list[type(QueryResponse)]:
-    return client.query(
-        collection_name="books",
-        query_text=text,
-        limit=limit,
-    )
+def get_recommendation(text: str, limit: int = DEFAULT_LIMIT) -> list[dict[str, str]]:
+    """Get book recommendations based on text similarity."""
+    db = BookDatabase()
+    results = db.query_books(text=text, limit=limit)
+    return [{"title": r.metadata["title"], "author": r.metadata["author"]} for r in results]

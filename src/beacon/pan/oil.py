@@ -1,23 +1,18 @@
-from pathlib import Path
-from typing import Final
-
 import polars as pl
 
-# TODO: goes to config.py
-DATA_URI: Path = Path("data/goodreads_top100_from1980to2023_final.csv")
-LANGUAGE: Final = "English"
-NUMBER_REVIEWS: Final = 300
+from beacon.settings import BOOKS_CSV_PATH, LANGUAGE, MIN_REVIEWS
 
 
 def get_data() -> pl.DataFrame:
+    """Load and preprocess books data from CSV."""
     schema_overrides = {"isbn": pl.Utf8}
 
     books = (
         pl.read_csv(
-            DATA_URI,
+            BOOKS_CSV_PATH,
             schema_overrides=schema_overrides,
         )
-        .filter(pl.col("language").eq(LANGUAGE) & pl.col("num_reviews").ge(NUMBER_REVIEWS))
+        .filter(pl.col("language").eq(LANGUAGE) & pl.col("num_reviews").ge(MIN_REVIEWS))
         .select([
             pl.col("isbn"),
             pl.col("title"),

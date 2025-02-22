@@ -1,6 +1,6 @@
 from beacon.pan.fire import get_recommendation
 
 
-def fry(text: str) -> list[str]:
-    results = get_recommendation(text)
-    return [r.metadata.get("title") for r in results]
+def fry(text: str) -> list[dict[str, str]]:
+    """Get book recommendations with both title and author."""
+    return get_recommendation(text)
