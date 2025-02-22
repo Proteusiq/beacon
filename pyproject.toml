@@ -15,7 +15,10 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-    "llama-cpp-python>=0.3.7",
+    "altair>=5.5.0",
+    "fastembed>=0.5.1",
+    "polars>=1.22.0",
+    "qdrant-client>=1.13.2",
 ]
 
 [project.urls]
