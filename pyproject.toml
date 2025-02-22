@@ -60,6 +60,10 @@ show_error_codes = true
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning",
+]
 
 [tool.ruff]
 target-version = "py39"
