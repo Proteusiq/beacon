@@ -37,22 +37,26 @@ for book in results:
 ## development setup
 
 1. clone the repository
+
 ```bash
 git clone https://github.com/proteusiq/beacon.git
 cd beacon
 ```
 
 2. install dependencies and pre-commit hooks
+
 ```bash
 make install
 ```
 
 3. run tests
+
 ```bash
 uv run pytest
 ```
 
 4. format code and run linters
+
 ```bash
 uv run pre-commit run -a
 ```
@@ -60,6 +64,7 @@ uv run pre-commit run -a
 ## examples
 
 find books similar to your favorites:
+
 ```python
 recommend("detective solving murders in victorian london")
 recommend("post-apocalyptic survival story")
