@@ -27,7 +27,7 @@ def test_becons(story):
     recommendations = recommeder.recommend(query)
 
     # Assert
-    assert any(expected in recommendation for recommendation in recommendations)
+    assert any(expected in rec["title"] for rec in recommendations)
 
 
 def test_fail():
