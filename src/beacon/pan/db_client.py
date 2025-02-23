@@ -16,6 +16,7 @@ class BookDatabase:
 
     def __init__(self) -> None:
         """initialize database connection using configured path."""
+
         self.client = QdrantClient(path=str(BOOKS_DB_PATH))
 
     def add_books(self, documents: list[str], metadata: list[dict[str, Any]]) -> None:
