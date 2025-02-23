@@ -1,4 +1,4 @@
-name: release-main
+name: On release - Deploy Documentation
 
 on:
   release:
