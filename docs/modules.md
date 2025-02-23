@@ -1,1 +1,1 @@
-::: beacon.recommeder.recommend
+::: beacon.recommender.recommend

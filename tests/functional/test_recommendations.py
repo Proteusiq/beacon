@@ -2,7 +2,7 @@ from typing import TypedDict
 
 import pytest
 
-from beacon import recommeder
+from beacon import recommender
 
 
 class Request(TypedDict, total=True):
@@ -24,7 +24,7 @@ def test_becons(story):
     expected = story.get("expects")
 
     # Act
-    recommendations = recommeder.recommend(query)
+    recommendations = recommender.recommend(query)
 
     # Assert
     assert any(expected in rec["title"] for rec in recommendations)
