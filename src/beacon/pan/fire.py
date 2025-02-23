@@ -1,6 +1,8 @@
+from pathlib import Path
+
 from beacon.pan.db_client import BookDatabase
 from beacon.pan.oil import get_data
-from beacon.settings import DEFAULT_LIMIT
+from beacon.settings import BOOKS_DB_PATH, DEFAULT_LIMIT
 
 
 def load_data() -> None:
@@ -8,10 +10,17 @@ def load_data() -> None:
 
     reads book data from csv, processes it, and stores in the vector database
     with metadata for efficient similarity search. this needs to be run once
-    before making recommendations.
+    before making recommendations. Will only load data if the books directory
+    is empty or doesn't exist.
     """
-    db = BookDatabase()
-    books_df = get_data()
+    # Create books directory if it doesn't exist
+    BOOKS_DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+    BOOKS_DB_PATH.mkdir(exist_ok=True)
+
+    # Only load data if directory is empty
+    if not any(BOOKS_DB_PATH.iterdir()):
+        db = BookDatabase()
+        books_df = get_data()
 
     # extract metadata and descriptions for storage
     metadata = [
