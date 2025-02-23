@@ -48,6 +48,11 @@ def get_data() -> pl.DataFrame:
         .drop(["title", "series_title"])
     )
 
+    # cheat to reduce github action run
+    targeted = books.filter(pl.col("description").str.contains("(?i)lawyer|wizard|vampire"))
+
+    books = books.sample(50, seed=42).extend(targeted)
+
     return books
 
 
@@ -65,14 +70,10 @@ def create_db() -> None:
 
     # early return if directory is empty
     if any(BOOKS_DB_PATH.iterdir()):
-        print("green")
         return
 
-    # create db
-    print("creation")
     books_df = get_data()
 
-    # extract metadata and descriptions for storage
     metadata = [
         {
             "author": author,
