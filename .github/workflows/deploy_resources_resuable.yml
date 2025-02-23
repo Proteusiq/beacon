@@ -1,4 +1,4 @@
-name: Reusable Template for Deploy Azure Resources
+name: Template - Deploy Azure Resources
 
 on:
   workflow_call:
