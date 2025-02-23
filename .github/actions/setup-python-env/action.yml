@@ -25,6 +25,6 @@ runs:
         enable-cache: "true"
         cache-suffix: ${{ matrix.python-version }}
 
-    - name: Install Python dependencies
-      run: uv sync --frozen
+    - name: Install Python dev dependencies
+      run: uv sync --extra dev --frozen
       shell: bash
