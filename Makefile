@@ -14,7 +14,6 @@ check: ## Run code quality tools.
 	@uv run mypy
 	@echo "🚀 Checking for obsolete dependencies: Running deptry"
 	@uv run deptry --ignore DEP003 .
-.
 
 .PHONY: test
 test: ## Test the code with pytest
