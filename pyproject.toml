@@ -15,9 +15,8 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-    "fastembed>=0.5.1",
     "polars>=1.22.0",
-    "qdrant-client>=1.13.2",
+    "qdrant-client[fastembed]>=1.13.2",
 ]
 
 [project.urls]
@@ -45,8 +44,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-packages = ["beacon"]
-py-modules = []
+py-modules = ["beacon"]
 
 [tool.mypy]
 files = ["src"]
