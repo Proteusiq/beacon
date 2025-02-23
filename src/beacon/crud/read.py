@@ -2,11 +2,7 @@ from beacon.client import Client
 from beacon.settings import BOOKS_DB_PATH, DEFAULT_COLLECTION_NAME, DEFAULT_LIMIT
 
 
-def get(
-    text: str,
-    limit: int = DEFAULT_LIMIT,
-    collection_name: str = DEFAULT_COLLECTION_NAME
-) -> list:
+def get(text: str, limit: int = DEFAULT_LIMIT, collection_name: str = DEFAULT_COLLECTION_NAME) -> list:
     with Client(path=str(BOOKS_DB_PATH)) as client:
         return client.query(
             collection_name=collection_name,
