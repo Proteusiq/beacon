@@ -1,3 +1,4 @@
+import types
 from qdrant_client import QdrantClient
 
 
@@ -9,5 +10,5 @@ class Client:
         self.client = QdrantClient(path=self.path)
         return self.client
 
-    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+    def __exit__(self, exc_type: type[BaseException] | None, exc_val: BaseException | None, exc_tb: types.TracebackType | None) -> None:
         self.client.close()
