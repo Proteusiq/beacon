@@ -71,14 +71,6 @@ recommend("post-apocalyptic survival story")
 recommend("romance in a small coastal town")
 ```
 
-## contributing
-
-contributions are welcome! please check our [contributing guidelines](CONTRIBUTING.md).
-
-## license
-
-this project is licensed under the terms of the mit license.
-
 ---
 
 made with ❤️ using [proteusiq/pyproject](https://github.com/proteusiq/pyproject)
