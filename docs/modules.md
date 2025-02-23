@@ -1,1 +1,1 @@
-::: beacon.echo
+::: beacon.recommeder.recommend
