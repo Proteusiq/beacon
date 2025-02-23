@@ -9,5 +9,5 @@ class Client:
         self.client = QdrantClient(path=self.path)
         return self.client
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
         self.client.close()
