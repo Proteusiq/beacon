@@ -1,4 +1,4 @@
-from beacon.pan.fire import get_recommendation
+from beacon.crud.read import get_recommendation
 
 
 def fry(text: str) -> list[dict[str, str]]:

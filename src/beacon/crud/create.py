@@ -1,6 +1,7 @@
 import polars as pl
 
-from beacon.settings import BOOKS_CSV_PATH, LANGUAGE, MIN_REVIEWS
+from beacon.crud import upload
+from beacon.settings import BOOKS_CSV_URI, BOOKS_DB_PATH, LANGUAGE, MIN_REVIEWS
 
 
 def get_data() -> pl.DataFrame:
@@ -20,7 +21,7 @@ def get_data() -> pl.DataFrame:
 
     books = (
         pl.read_csv(
-            BOOKS_CSV_PATH,
+            BOOKS_CSV_URI,
             schema_overrides=schema_overrides,
         )
         .filter(pl.col("language").eq(LANGUAGE) & pl.col("num_reviews").ge(MIN_REVIEWS))
@@ -48,3 +49,39 @@ def get_data() -> pl.DataFrame:
     )
 
     return books
+
+
+def create_db() -> None:
+    """load and store books data in the vector database.
+
+    reads book data from csv, processes it, and stores in the vector database
+    with metadata for efficient similarity search. this needs to be run once
+    before making recommendations. will only load data if the books directory
+    is empty or doesn't exist.
+    """
+    # create books directory if it doesn't exist
+    BOOKS_DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+    BOOKS_DB_PATH.mkdir(exist_ok=True)
+
+    # early return if directory is empty
+    if any(BOOKS_DB_PATH.iterdir()):
+        print("green")
+        return
+
+    # create db
+    print("creation")
+    books_df = get_data()
+
+    # extract metadata and descriptions for storage
+    metadata = [
+        {
+            "author": author,
+            "title": title,
+        }
+        for author, title in zip(
+            books_df.select("authors").get_column("authors").to_list(),
+            books_df.select("combined_title").get_column("combined_title").to_list(),
+        )
+    ]
+    documents = books_df.select("description").get_column("description").to_list()
+    upload.post(documents=documents, metadata=metadata)
