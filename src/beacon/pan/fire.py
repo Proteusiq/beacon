@@ -10,10 +10,10 @@ def load_data() -> None:
 
     reads book data from csv, processes it, and stores in the vector database
     with metadata for efficient similarity search. this needs to be run once
-    before making recommendations. Will only load data if the books directory
+    before making recommendations. will only load data if the books directory
     is empty or doesn't exist.
     """
-    # Create books directory if it doesn't exist
+    # create books directory if it doesn't exist
     BOOKS_DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     BOOKS_DB_PATH.mkdir(exist_ok=True)
 
