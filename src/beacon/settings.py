@@ -4,6 +4,9 @@ from typing import Final
 # data settings
 DATA_PATH: Path = Path("data")
 BOOKS_DB_PATH: Path = DATA_PATH / "books"
+# create books directory if it doesn't exist
+BOOKS_DB_PATH.mkdir(parents=True, exist_ok=True)
+
 BOOKS_CSV_URI: str = (
     "https://raw.githubusercontent.com/Proteusiq/igia/refs/heads/main/data/goodreads_top100_from1980to2023_final.csv"
 )
