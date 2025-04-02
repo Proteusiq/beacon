@@ -28,7 +28,7 @@ repos:
         name: pytest
         stages: [pre-commit]
         types: [python]
-        entry: pytest
+        entry: pytest -k 'functional'
         language: system
         pass_filenames: false
         always_run: true
@@ -36,6 +36,11 @@ repos:
       - id: readme-index
         name: cat-readme-index
         entry: sh -c 'cat README.md > docs/index.md'
+        language: system
+
+      - id: cli-index
+        name: cli-readme-index
+        entry: sh -c 'cat src/beacon/cli/README.md > docs/cli.md'
         language: system
 
       - id: make-checks

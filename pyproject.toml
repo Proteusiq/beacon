@@ -17,6 +17,8 @@ classifiers = [
 dependencies = [
     "polars>=1.22.0",
     "qdrant-client[fastembed]>=1.13.2",
+    "typer>=0.9.0",
+    "rich>=13.7.0",
 ]
 
 [project.urls]
@@ -45,6 +47,9 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools]
 package-dir = {"" = "src"}
 py-modules = ["beacon"]
+
+[project.scripts]
+beacon-db = "beacon.cli.db:app"
 
 [tool.mypy]
 files = ["src"]

@@ -1,6 +1,5 @@
 ![beacon](https://github.com/user-attachments/assets/c5fd6745-74e6-4cd7-9c93-c735ee58e5b2)
 
-
 # beacon 📚
 
 [![Release](https://img.shields.io/github/v/release/proteusiq/beacon)](https://img.shields.io/github/v/release/proteusiq/beacon)
@@ -23,6 +22,14 @@ uv pip install git+https://github.com/proteusiq/beacon.git
 ```
 
 ## quick start
+
+Use a small database (for full database remove --test flag)
+
+```sh
+uv sync && uv run -m beacon.cli.db init --test
+```
+
+Enjoy some bacons
 
 ```python
 from beacon import recommend

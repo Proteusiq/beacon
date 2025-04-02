@@ -1,4 +1,4 @@
-![beacon](https://github.com/user-attachments/assets/87b18d8a-0ee4-4bb9-a0be-c411c7cb6aa9)
+![beacon](https://github.com/user-attachments/assets/c5fd6745-74e6-4cd7-9c93-c735ee58e5b2)
 
 # beacon 📚
 
@@ -6,7 +6,7 @@
 [![Build status](https://img.shields.io/github/actions/workflow/status/proteusiq/beacon/main.yml?branch=main)](https://github.com/proteusiq/beacon/actions/workflows/main.yml?query=branch%3Amain)
 [![Python Version](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 
-beacon is a semantic book recommendation system that helps you find your next great read based on natural language descriptions.
+beacon is a semantic book recommendation system that helps you find your next great read based on a descriptions.
 
 ## features
 
@@ -22,6 +22,14 @@ uv pip install git+https://github.com/proteusiq/beacon.git
 ```
 
 ## quick start
+
+Use a small database (for full database remove --test flag)
+
+```sh
+uv sync && uv run -m beacon.cli.db init --test
+```
+
+Enjoy some bacons
 
 ```python
 from beacon import recommend

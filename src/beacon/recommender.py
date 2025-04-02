@@ -1,7 +1,8 @@
 from beacon.frier import bacons
+from beacon.types import Recommendation
 
 
-def recommend(text: str) -> list[dict[str, str]]:
+def recommend(text: str) -> list[Recommendation]:
     """get personalized book recommendations based on text description.
 
     this is the main entry point for getting book recommendations.

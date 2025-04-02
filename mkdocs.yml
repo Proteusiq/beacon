@@ -9,7 +9,9 @@ copyright: Maintained by <a href="https://proteusiq.com">proteusiq</a>.
 
 nav:
   - Home: index.md
+  - CLI: cli.md
   - Modules: modules.md
+  - OnePager: onepager.md
 plugins:
   - search
   - mkdocstrings:

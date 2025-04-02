@@ -1,5 +1,6 @@
 from beacon.client import Client
 from beacon.settings import BOOKS_DB_PATH, DEFAULT_COLLECTION_NAME, DEFAULT_LIMIT
+from beacon.types import Recommendation
 
 
 def get(text: str, limit: int = DEFAULT_LIMIT, collection_name: str = DEFAULT_COLLECTION_NAME) -> list:
@@ -11,7 +12,7 @@ def get(text: str, limit: int = DEFAULT_LIMIT, collection_name: str = DEFAULT_CO
         )
 
 
-def get_recommendation(text: str, limit: int = DEFAULT_LIMIT) -> list[dict[str, str]]:
+def get_recommendation(text: str, limit: int = DEFAULT_LIMIT) -> list[Recommendation]:
     """find books similar to the provided text description.
 
     args:
