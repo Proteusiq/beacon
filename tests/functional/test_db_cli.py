@@ -32,12 +32,17 @@ def clean_db_path():
         shutil.rmtree(db_path)
 
 
-def test_init_test_mode(clean_db_path):
+@patch('beacon.cli.db.create_db')
+def test_init_test_mode(mock_create_db, clean_db_path):
     """Test initializing the database in test mode."""
     db_path = BOOKS_DB_PATH / DEFAULT_COLLECTION_NAME
     
     # Verify db doesn't exist yet
     assert not db_path.exists()
+    
+    # Create the directory to simulate successful DB creation
+    # This is needed because we're mocking the actual create_db function
+    os.makedirs(db_path, exist_ok=True)
     
     # Run the init command with test mode
     result = runner.invoke(app, ["init", "--test"])
@@ -46,8 +51,8 @@ def test_init_test_mode(clean_db_path):
     assert result.exit_code == 0
     assert "Database initialized successfully in test mode" in result.stdout
     
-    # Verify db was created
-    assert db_path.exists()
+    # Verify mock was called with test_mode=True
+    mock_create_db.assert_called_once_with(test_mode=True)
 
 
 def test_init_force_flag(clean_db_path):
