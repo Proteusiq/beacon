@@ -4,13 +4,16 @@ from beacon.crud import upload
 from beacon.settings import BOOKS_CSV_URI, LANGUAGE, MIN_REVIEWS
 
 
-def get_data() -> pl.DataFrame:
+def get_data(test_mode: bool = False) -> pl.DataFrame:
     """load and preprocess books data from csv file.
 
     reads the books dataset and applies filtering and transformations:
     - filters for english books with minimum review threshold
     - combines series title with book title when applicable
     - selects relevant columns for recommendation system
+
+    args:
+        test_mode: if True, only loads a small subset of data for testing
 
     returns:
         polars dataframe with processed book data containing:
@@ -48,23 +51,29 @@ def get_data() -> pl.DataFrame:
         .drop(["title", "series_title"])
     )
 
-    # cheat to reduce github action run
+    # For test mode, only get the targeted books
+    if test_mode:
+        # Get books with specific keywords for tests
+        return books.filter(pl.col("description").str.contains("(?i)lawyer|wizard|vampire"))
+    
+    # For regular mode, get a sample plus the targeted books
     targeted = books.filter(pl.col("description").str.contains("(?i)lawyer|wizard|vampire"))
-
     books = books.sample(50, seed=42).extend(targeted)
 
     return books
 
 
-def create_db() -> None:
+def create_db(test_mode: bool = False) -> None:
     """load and store books data in the vector database.
 
     with metadata for efficient similarity search. this needs to be run once
     before making recommendations. will only load data if the books directory
     is empty or doesn't exist.
-    """
 
-    books_df = get_data()
+    args:
+        test_mode: if True, only loads test data (smaller dataset)
+    """
+    books_df = get_data(test_mode=test_mode)
 
     metadata = [
         {

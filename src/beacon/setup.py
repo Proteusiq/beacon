@@ -1,5 +1,6 @@
-from beacon.crud.create import create_db
+"""Legacy setup module - use beacon-db CLI instead."""
+from beacon.cli.db import init
 
-# TODO: Call this one if db is empty
 if __name__ == "__main__":
-    create_db()
+    print("WARNING: This script is deprecated. Use 'beacon-db init' instead.")
+    init()
