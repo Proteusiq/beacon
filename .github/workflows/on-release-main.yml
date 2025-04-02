@@ -13,9 +13,14 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up the environment
         uses: ./.github/actions/setup-python-env
+
+      - name: Build documentation
+        run: uv run mkdocs build
 
       - name: Deploy documentation
         run: uv run mkdocs gh-deploy --force
@@ -26,26 +31,42 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+        
+      - name: Set up the environment
+        uses: ./.github/actions/setup-python-env
         
       - name: Create branch
         run: |
-          git checkout -b docs-update-$(date +%Y%m%d)
+          branch_name="docs-update-$(date +%Y%m%d-%H%M%S)"
+          git checkout -b $branch_name
           
       - name: Set up Git
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           
-      - name: Push changes
+      - name: Update documentation files
         run: |
-          git add .
-          git commit -m "docs: Update documentation" || echo "No changes to commit"
-          git push origin docs-update-$(date +%Y%m%d)
+          uv run mkdocs build
+          
+      - name: Commit and push changes
+        run: |
+          git add docs/ site/
+          git commit -m "docs: Update documentation from workflow" || echo "No changes to commit"
+          git push --set-upstream origin HEAD
         
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           title: "docs: Update documentation"
-          body: "Automated PR created by the on-release-main workflow"
-          branch: docs-update-$(date +%Y%m%d)
+          body: |
+            # Documentation Update
+            
+            This PR was automatically created by the documentation workflow.
+            It contains the latest documentation changes.
+          branch: ${{ github.ref }}
           base: main
+          delete-branch: true
