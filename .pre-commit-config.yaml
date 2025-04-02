@@ -38,6 +38,11 @@ repos:
         entry: sh -c 'cat README.md > docs/index.md'
         language: system
 
+      - id: cli-index
+        name: cli-readme-index
+        entry: sh -c 'cat src/beacon/cli/README.md > docs/cli.md'
+        language: system
+
       - id: make-checks
         name: make-checks
         entry: make check
