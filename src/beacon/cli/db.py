@@ -1,6 +1,17 @@
 """Database management CLI for Beacon.
 
 This module provides command-line tools for initializing and managing the vector database.
+
+Usage:
+    # Run with uv
+    uv run -m beacon.cli.db init
+    uv run -m beacon.cli.db init --test
+    uv run -m beacon.cli.db clean
+    
+    # Or if installed in development mode
+    uv run beacon-db init
+    uv run beacon-db init --test
+    uv run beacon-db clean
 """
 import os
 from pathlib import Path
