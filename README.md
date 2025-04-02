@@ -26,7 +26,7 @@ uv pip install git+https://github.com/proteusiq/beacon.git
 Use a small database (for full database remove --test flag)
 
 ```sh
-uv sync && uv run beacon init --test
+uv run beacon init --test
 ```
 
 Enjoy some bacons
