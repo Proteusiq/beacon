@@ -3,14 +3,14 @@
 ### Project Name: Book Recommendation Tool for Becon Friers
 
 #### Stakeholders:
-- **Helle Nielsen** (Super User) - helnie@becon.dk
-- **Martin Jacobsen** (Project Owner) - marjac@becon.dk
+- **Helle Nielsen** (Super User) - helnie@beacon.dk
+- **Martin Jacobsen** (Project Owner) - marjac@beacon.dk
 
 ---
 
 ### Business Need:
 
-Becon Friers seeks to enhance user engagement by developing a sophisticated book recommendation tool. The tool should effectively analyze users' descriptions, ensuring that relevant book suggestions are made based on their interests and preferences. By accurately matching descriptions to popular book titles, Becon Friers can improve user satisfaction, drive traffic, and foster a community around reading.
+Beacon Friers seeks to enhance user engagement by developing a sophisticated book recommendation tool. The tool should effectively analyze users' descriptions, ensuring that relevant book suggestions are made based on their interests and preferences. By accurately matching descriptions to popular book titles, Beacon Friers can improve user satisfaction, drive traffic, and foster a community around reading.
 
 ---
 
