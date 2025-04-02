@@ -22,7 +22,7 @@ from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, TextColumn
 
 from beacon.crud.create import create_db
-from beacon.settings import BOOKS_DB_PATH, COLLECTION
+from beacon.settings import BOOKS_DB_PATH, DEFAULT_COLLECTION_NAME
 
 app = typer.Typer(help="Beacon database management tools")
 console = Console()
@@ -42,7 +42,7 @@ def init(
     This command loads book data from the configured source and creates a vector database
     for similarity search. By default, it will not overwrite an existing database.
     """
-    db_path = BOOKS_DB_PATH / COLLECTION
+    db_path = BOOKS_DB_PATH / DEFAULT_COLLECTION_NAME
     
     # Check if database already exists
     if db_path.exists() and not force:
@@ -101,7 +101,7 @@ def clean() -> None:
     
     This command deletes the database files completely.
     """
-    db_path = BOOKS_DB_PATH / COLLECTION
+    db_path = BOOKS_DB_PATH / DEFAULT_COLLECTION_NAME
     
     if not db_path.exists():
         console.print(
