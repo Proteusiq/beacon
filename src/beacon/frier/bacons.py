@@ -1,7 +1,8 @@
 from beacon.crud.read import get_recommendation
+from beacon.types import Recommendation
 
 
-def fry(text: str) -> list[dict[str, str]]:
+def fry(text: str) -> list[Recommendation]:
     """get book recommendations matching the input description.
 
     internal function that processes the recommendation request.

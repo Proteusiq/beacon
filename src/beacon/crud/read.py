@@ -1,12 +1,6 @@
-from typing import TypedDict
-
 from beacon.client import Client
 from beacon.settings import BOOKS_DB_PATH, DEFAULT_COLLECTION_NAME, DEFAULT_LIMIT
-
-
-class Recommendation(TypedDict, total=True):
-    title: str
-    author: str
+from beacon.types import Recommendation
 
 
 def get(text: str, limit: int = DEFAULT_LIMIT, collection_name: str = DEFAULT_COLLECTION_NAME) -> list:
