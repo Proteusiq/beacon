@@ -7,7 +7,7 @@
 [![Build status](https://img.shields.io/github/actions/workflow/status/proteusiq/beacon/main.yml?branch=main)](https://github.com/proteusiq/beacon/actions/workflows/main.yml?query=branch%3Amain)
 [![Python Version](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 
-beacon is a semantic book recommendation system that helps you find your next great read based on natural language descriptions.
+beacon is a semantic book recommendation system that helps you find your next great read based on a descriptions.
 
 ## features
 
