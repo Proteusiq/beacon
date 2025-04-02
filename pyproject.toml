@@ -1,8 +1,8 @@
 [project]
 name = "beacon"
 version = "0.0.1"
-description = "Distance between a beacon and becon is direction vs teast"
-authors = [{ name = "diːsaɪ", email = "disai@norlys.dk" }]
+description = "Distance between a beacon and bacon is direction vs teast"
+authors = [{ name = "Prayson W. Daniel", email = "praysonpi@gmail.com" }]
 readme = "README.md"
 keywords = ['python']
 requires-python = ">=3.12,<4.0"
