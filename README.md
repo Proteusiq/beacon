@@ -21,12 +21,14 @@ beacon is a semantic book recommendation system that helps you find your next gr
 uv pip install git+https://github.com/proteusiq/beacon.git
 ```
 
+![example](https://github.com/user-attachments/assets/24c20265-1dfa-4eaf-866b-daeeef1bf3ad)
+
 ## quick start
 
 Use a small database (for full database remove --test flag)
 
 ```sh
-uv sync && uv run beacon init --test
+uv run beacon init --test
 ```
 
 Enjoy some bacons
