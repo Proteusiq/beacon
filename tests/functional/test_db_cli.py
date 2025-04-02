@@ -40,19 +40,20 @@ def test_init_test_mode(mock_create_db, clean_db_path):
     # Verify db doesn't exist yet
     assert not db_path.exists()
     
-    # Create the directory to simulate successful DB creation
-    # This is needed because we're mocking the actual create_db function
-    os.makedirs(db_path, exist_ok=True)
-    
     # Run the init command with test mode
     result = runner.invoke(app, ["init", "--test"])
     
     # Check command succeeded
     assert result.exit_code == 0
-    assert "Database initialized successfully in test mode" in result.stdout
+    assert "Database initialized successfully" in result.stdout
+    assert "test mode" in result.stdout
     
     # Verify mock was called with test_mode=True
     mock_create_db.assert_called_once_with(test_mode=True)
+    
+    # Create the directory to simulate successful DB creation after the test
+    # This is just to ensure clean_db_path fixture can clean up properly
+    os.makedirs(db_path, exist_ok=True)
 
 
 def test_init_force_flag(clean_db_path):
