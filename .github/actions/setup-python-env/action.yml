@@ -30,5 +30,5 @@ runs:
       shell: bash
 
     - name: Populate Test Embedding DataBase
-      run: uv run -m beacon init --test
+      run: uv run beacon init --test
       shell: bash
