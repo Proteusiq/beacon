@@ -26,7 +26,7 @@ Homepage = "https://proteusiq.github.io/beacon/"
 Repository = "https://github.com/proteusiq/beacon"
 Documentation = "https://proteusiq.github.io/beacon/"
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
     "pytest>=7.2.0",
     "pre-commit>=2.20.0",
@@ -49,7 +49,7 @@ package-dir = {"" = "src"}
 py-modules = ["beacon"]
 
 [project.scripts]
-beacon-db = "beacon.cli.db:app"
+beacon = "beacon.cli.db:app"
 
 [tool.mypy]
 files = ["src"]
