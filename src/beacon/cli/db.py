@@ -9,9 +9,9 @@ Usage:
     uv run -m beacon.cli.db clean
 
     # Or if installed in development mode
-    uv run beacon-db init
-    uv run beacon-db init --test
-    uv run beacon-db clean
+    uv run beacon init
+    uv run beacon init --test
+    uv run beacon clean
 """
 
 import shutil

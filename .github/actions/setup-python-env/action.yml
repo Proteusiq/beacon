@@ -26,9 +26,9 @@ runs:
         cache-suffix: ${{ matrix.python-version }}
 
     - name: Install Python dev dependencies
-      run: uv sync --extra dev --frozen
+      run: uv sync --group dev --frozen
       shell: bash
 
     - name: Populate Test Embedding DataBase
-      run: uv run -m beacon.cli.db init --test
+      run: uv run beacon init --test
       shell: bash
