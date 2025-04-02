@@ -13,8 +13,8 @@ Usage:
     uv run beacon-db init --test
     uv run beacon-db clean
 """
-import os
 from pathlib import Path
+import shutil
 
 import typer
 from rich.console import Console
@@ -44,7 +44,6 @@ def init(
     """
     db_path = BOOKS_DB_PATH / DEFAULT_COLLECTION_NAME
     
-    # Check if database already exists
     if db_path.exists() and not force:
         console.print(
             Panel(
@@ -57,10 +56,8 @@ def init(
         )
         return
 
-    # Create parent directories if they don't exist
-    os.makedirs(BOOKS_DB_PATH, exist_ok=True)
+    BOOKS_DB_PATH.mkdir(parents=True, exist_ok=True)
     
-    # Initialize with progress indicator
     with Progress(
         SpinnerColumn(),
         TextColumn("[bold blue]{task.description}"),
@@ -115,7 +112,6 @@ def clean() -> None:
     
     if typer.confirm(f"Are you sure you want to delete the database at {db_path}?"):
         try:
-            import shutil
             shutil.rmtree(db_path)
             console.print(
                 Panel(
