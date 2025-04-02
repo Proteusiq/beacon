@@ -1,4 +1,5 @@
-![beacon](https://github.com/user-attachments/assets/87b18d8a-0ee4-4bb9-a0be-c411c7cb6aa9)
+![beacon](https://github.com/user-attachments/assets/c5fd6745-74e6-4cd7-9c93-c735ee58e5b2)
+
 
 # beacon 📚
 
