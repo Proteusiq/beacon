@@ -23,7 +23,7 @@ def get_data(test_mode: bool = False) -> pl.DataFrame:
     schema_overrides = {"isbn": pl.Utf8}
 
     books = (
-        pl.read_csv(
+        pl.scan_csv(
             BOOKS_CSV_URI,
             schema_overrides=schema_overrides,
         )
@@ -47,20 +47,19 @@ def get_data(test_mode: bool = False) -> pl.DataFrame:
             )  # pl.concat_str([pl.col('series_title'), pl.lit(': '), pl.col('title')])
             .otherwise(pl.col("title"))
             .alias("combined_title")
+            .str.strip_chars()
         ])
         .drop(["title", "series_title"])
+        .unique(subset=["combined_title"])
     )
 
-    # For test mode, only get the targeted books
+    # for test mode, only get the targeted books
     if test_mode:
-        # Get books with specific keywords for tests
-        return books.filter(pl.col("description").str.contains("(?i)lawyer|wizard|vampire"))
-    
-    # For regular mode, get a sample plus the targeted books
-    targeted = books.filter(pl.col("description").str.contains("(?i)lawyer|wizard|vampire"))
-    books = books.sample(50, seed=42).extend(targeted)
+        # get books with specific keywords for tests
+        targeted = books.filter(pl.col("description").str.contains("(?i)lawyer|wizard|vampire"))
+        return books.collect().sample(50, seed=42).extend(targeted.collect())
 
-    return books
+    return books.collect()
 
 
 def create_db(test_mode: bool = False) -> None:

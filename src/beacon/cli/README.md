@@ -36,6 +36,7 @@ uv run beacon-db clean
 ## Adding New CLI Tools
 
 When adding new CLI tools:
+
 1. Create a new Python module in this directory
 2. Use Typer to define your commands
 3. Add an entry point in pyproject.toml if needed

@@ -28,7 +28,7 @@ repos:
         name: pytest
         stages: [pre-commit]
         types: [python]
-        entry: pytest
+        entry: pytest -k 'functional'
         language: system
         pass_filenames: false
         always_run: true

@@ -28,3 +28,7 @@ runs:
     - name: Install Python dev dependencies
       run: uv sync --extra dev --frozen
       shell: bash
+
+    - name: Populate Test Embedding DataBase
+      run: uv run -m beacon.cli.db init --test
+      shell: bash

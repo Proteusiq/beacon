@@ -7,13 +7,13 @@ Usage:
     uv run -m beacon.cli.db init
     uv run -m beacon.cli.db init --test
     uv run -m beacon.cli.db clean
-    
+
     # Or if installed in development mode
     uv run beacon-db init
     uv run beacon-db init --test
     uv run beacon-db clean
 """
-from pathlib import Path
+
 import shutil
 
 import typer
@@ -30,12 +30,8 @@ console = Console()
 
 @app.command()
 def init(
-    test_mode: bool = typer.Option(
-        False, "--test", "-t", help="Initialize with test data only (smaller dataset)"
-    ),
-    force: bool = typer.Option(
-        False, "--force", "-f", help="Force reinitialization even if database exists"
-    ),
+    test_mode: bool = typer.Option(False, "--test", "-t", help="Initialize with test data only (smaller dataset)"),
+    force: bool = typer.Option(False, "--force", "-f", help="Force reinitialization even if database exists"),
 ) -> None:
     """Initialize the vector database with book data.
 
@@ -43,7 +39,7 @@ def init(
     for similarity search. By default, it will not overwrite an existing database.
     """
     db_path = BOOKS_DB_PATH / DEFAULT_COLLECTION_NAME
-    
+
     if db_path.exists() and not force:
         console.print(
             Panel(
@@ -57,25 +53,22 @@ def init(
         return
 
     BOOKS_DB_PATH.mkdir(parents=True, exist_ok=True)
-    
+
     with Progress(
         SpinnerColumn(),
         TextColumn("[bold blue]{task.description}"),
         console=console,
     ) as progress:
-        task = progress.add_task(
-            f"Initializing {'test ' if test_mode else ''}database...", total=None
-        )
-        
+        task = progress.add_task(f"Initializing {'test ' if test_mode else ''}embedding database...", total=None)
+
         try:
             create_db(test_mode=test_mode)
             progress.update(task, completed=True)
-            
+
             mode_text = "[bold yellow]test mode[/]" if test_mode else "[bold green]full mode[/]"
             console.print(
                 Panel(
-                    f"Database initialized successfully in {mode_text}!\n\n"
-                    f"Path: [bold]{db_path}[/]",
+                    f"Embedding Database initialized successfully in {mode_text}!\n\nPath: [bold]{db_path}[/]",
                     title="✅ Success",
                     expand=False,
                 )
@@ -84,38 +77,37 @@ def init(
             progress.update(task, completed=True)
             console.print(
                 Panel(
-                    f"[bold red]Error:[/] {str(e)}",
+                    f"[bold red]Error:[/] {e!s}",
                     title="❌ Failed",
                     expand=False,
                 )
             )
-            raise typer.Exit(code=1)
+            raise typer.Exit(code=1) from e
 
 
 @app.command()
 def clean() -> None:
-    """Remove the existing vector database.
-    
+    """Remove the existing embedding database.
+
     This command deletes the database files completely.
     """
-    db_path = BOOKS_DB_PATH / DEFAULT_COLLECTION_NAME
-    
-    if not db_path.exists():
+
+    if not BOOKS_DB_PATH.exists():
         console.print(
             Panel(
                 "No database found to clean.",
-                title="ℹ️ Info",
+                title="ℹ️ Info",  # noqa: RUF001
                 expand=False,
             )
         )
         return
-    
-    if typer.confirm(f"Are you sure you want to delete the database at {db_path}?"):
+
+    if typer.confirm(f"Are you sure you want to delete the database at {BOOKS_DB_PATH}?"):
         try:
-            shutil.rmtree(db_path)
+            shutil.rmtree(BOOKS_DB_PATH)
             console.print(
                 Panel(
-                    f"Database at [bold]{db_path}[/] has been removed.",
+                    f"Database at [bold]{BOOKS_DB_PATH}[/] has been removed.",
                     title="✅ Success",
                     expand=False,
                 )
@@ -123,12 +115,12 @@ def clean() -> None:
         except Exception as e:
             console.print(
                 Panel(
-                    f"[bold red]Error:[/] {str(e)}",
+                    f"[bold red]Error:[/] {e!s}",
                     title="❌ Failed",
                     expand=False,
                 )
             )
-            raise typer.Exit(code=1)
+            raise typer.Exit(code=1) from e
 
 
 if __name__ == "__main__":
